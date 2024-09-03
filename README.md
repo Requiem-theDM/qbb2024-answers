@@ -1,3 +1,3 @@
 # qbb2024-answers
 
-Quant Bio Bootcamo answers are stored here.
+Quant Bio Bootcamp answers are stored here.
