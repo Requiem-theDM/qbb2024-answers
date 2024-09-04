@@ -37,3 +37,7 @@
 ## Answer 4
 
 - This grep would return any line where pseudogene occurs in any context, regardless of if that is as a "processed_pseudogene", "unprocessed_pseudogene", "transcribed_unprocessed_pseudogene", or simply a gene that "overlaps_pseudogene".
+
+## Answer 5
+
+- `cut -f 1,4,5,10 gene-tabs.gtf | less -S -N > gene-tabs.bed`
