@@ -33,3 +33,7 @@
 -   1 chr18
 -   1 chr10
 -   1 chr1
+
+## Answer 4
+
+- This grep would return any line where pseudogene occurs in any context, regardless of if that is as a "processed_pseudogene", "unprocessed_pseudogene", "transcribed_unprocessed_pseudogene", or simply a gene that "overlaps_pseudogene".
