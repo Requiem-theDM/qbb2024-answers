@@ -40,4 +40,4 @@
 
 ## Answer 5
 
-- `cut -f 1,4,5,10 gene-tabs.gtf | less -S -N > gene-tabs.bed`
+- `cut -f 1,4,5,10 gene-tabs.gtf > gene-tabs.bed`
