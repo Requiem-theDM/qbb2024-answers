@@ -2,15 +2,26 @@
 
 import sys
 
-#This opens the file passed as the second argument of the command to run this script.
-file = open(sys.argv[2])
-#This takes the search term from the first argument of the command to run this script.
-term = sys.argv[1]
-
-for line in file:
-    line = line.rstrip("\n")
-    if term in line:
-        print(line)
-
-
-file.close()
+try:
+    term = sys.argv[-2]
+except:
+    print("Insufficient Argumnents ~ No Specified Search Term or File")
+    sys.exit(1)
+else:
+    if sys.argv[-1] == sys.argv[1]:
+            print("Insufficient Argumnents ~ No Specified File")
+            sys.exit(1)
+    try:
+        file = open(sys.argv[-1])
+        for line in file:
+            line = line.rstrip("\n")
+            if sys.argv[1] != "-v":
+                if term in line:
+                    print(line)
+            if sys.argv[1] == "-v":
+                if term not in line:
+                    print(line)
+        file.close()
+    except:
+        print("File Not Found")
+        sys.exit(1)
