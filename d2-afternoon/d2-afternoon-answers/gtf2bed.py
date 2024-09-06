@@ -20,8 +20,8 @@ for line in file:
         for argument in nested_fields:
                 i += 1
                 if "gene_name" in argument:
-                    found = found + str(fields[0]) + "\t" + str(fields[3]) + "\t" + str(fields[4]) + "\t" + str(nested_fields[i].lstrip("\"").rstrip("\";"))
-                    print(found)
+                    found = found + str(fields[0]) + "\t" + str(fields[3]) + "\t" + str(fields[4]) + "\t" + str(nested_fields[i].lstrip("\"").rstrip("\";") + "\n")
+                    new_file.write(found)
                 else:
                     continue
     else:
@@ -30,3 +30,4 @@ for line in file:
             
 
 file.close()
+new_file.close()

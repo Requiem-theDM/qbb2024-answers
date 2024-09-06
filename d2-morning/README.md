@@ -22,7 +22,7 @@
 -  16 chr15
 -   6 chr16
 -   1 chr21
--  `rep -w "IG\_.*\_gene" genes.gtf | grep  "pseudogene"  | cut -f 1 | sort | uniq -c | sort -n -r `
+-  `grep -w "IG\_.*\_gene" genes.gtf | grep  "pseudogene"  | cut -f 1 | sort | uniq -c | sort -n -r `
 -  84 chr14
 -  48 chr22
 -  45 chr2
@@ -37,6 +37,7 @@
 ## Answer 4
 
 - This grep would return any line where pseudogene occurs in any context, regardless of if that is as a "processed_pseudogene", "unprocessed_pseudogene", "transcribed_unprocessed_pseudogene", or simply a gene that "overlaps_pseudogene".
+- Likely, a search algorithm that utilizes regular expressions and multiple rounds of filtering such as seen above in the answer to question 3 would be the ideal solution. 
 
 ## Answer 5
 
