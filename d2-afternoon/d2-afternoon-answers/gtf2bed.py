@@ -26,7 +26,6 @@ for line in file:
                     continue
     else:
         continue
-        
             
 
 file.close()
