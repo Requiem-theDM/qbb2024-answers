@@ -100,9 +100,13 @@ for gene_name in gene_names:
 
 # Q7 Print the dictionary to a tsv
 line = ("GeneID" + "\t" + "Tissue" + "\t" + "Expression_Values")
-print(line)
+print (line)
+index = 0
 for key, value in relevant_expression_values.items():
-    print(key[0], key[1], value,sep="\t")
+    for i in range(len(value)):
+        for j in range(len(value[i])):
+            print(key[0],key[1],value[i][j],sep="\t")
+
 
 gene_tissue.close()
 metadata.close()
