@@ -99,14 +99,11 @@ for gene_name in gene_names:
     value = ""
 
 # Q7 Print the dictionary to a tsv
-new_file = open("relevant_expression_values",'w')
-line = ("GeneID" + "\t" + "Tissue" + "\t" + "Expression_Values" +"\n")
-new_file.write(line)
+line = ("GeneID" + "\t" + "Tissue" + "\t" + "Expression_Values")
+print(line)
 for key, value in relevant_expression_values.items():
-    line = (str(key[0]) + "\t" + str(key[1]) + "\t" + str(value) + "\n")
-    new_file.write(line)
+    print(key[0], key[1], value,sep="\t")
 
 gene_tissue.close()
 metadata.close()
 tissue_names.close()
-new_file.close()
