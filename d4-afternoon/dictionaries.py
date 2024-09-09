@@ -83,19 +83,25 @@ relevant_expression_values = {}
 for gene_name in gene_names:
     if gene_name in relevant_samples:
         #Appends the relevant rows for genes to index expression values
-        relevant_gene_row.append(index)
+        relevant_tissue = relevant_samples[gene_name]
+        relevant_column = tissue_columns[relevant_tissue]
         #Keys the relevant expression values dictionary with gene, tissue tuples
-        key = (gene_name, relevant_samples[gene_name])
+        key = (gene_name, relevant_tissue)
         relevant_expression_values.setdefault(key, [])
-        #Scans through the expression values list to 
-        for gene_row in range(len(expression_array)):
-             if gene_row in relevant_gene_row:
-                #Pulls the tissue columns relevant for each gene and uses that with the gene rows above to index the needed expression values
-                relevant_expression_values[key].append(expression_array[gene_row, tissue_columns[relevant_samples[gene_name]]])
+        value = expression_array[index][relevant_column]
+        #Pulls the tissue columns relevant for each gene and uses that with the gene rows above to index the needed expression values
+        relevant_expression_values[key].append(value)  
+        
     index += 1
+    relevant_tissue = ""
+    relevant_column = ""
+    key = ""
+    value = ""
 
-#Q7 Print the dictionary to a tsv
+# Q7 Print the dictionary to a tsv
 new_file = open("relevant_expression_values",'w')
+line = ("GeneID" + "\t" + "Tissue" + "\t" + "Expression_Values")
+new_file.write(line)
 for key, value in relevant_expression_values.items():
     line = (str(key[0]) + "\t" + str(key[1]) + "\t" + str(value) + "\n")
     new_file.write(line)
