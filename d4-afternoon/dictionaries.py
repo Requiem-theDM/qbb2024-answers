@@ -58,6 +58,21 @@ for tissue, samples in tissue_samples.items():
             position = header.index(sample)
             tissue_columns[tissue].append(position)
 
+#Q5 Work
+max_value = 0
+min_value = 0
+
+for key, value in tissue_columns.items():
+    if len(value) >= max_value:
+        max_value = len(value)
+        max_tissue = key
+    if len(value) <= min_value:
+        min_value = len(value)
+        min_tissue = key
+
+print(max_tissue, max_value)
+print(min_tissue, min_value)
+
 
 #Q6 Work
 #Initializes a list for storing expression values and gene names
