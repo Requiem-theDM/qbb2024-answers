@@ -15,7 +15,7 @@ do
         FEATURESNP=$(awk '{s+=$4}END{print s}' coverage_${MAF}_${FEATURE}.txt) #Pulls the number of SNPs found in a feature
         FEATUREBASE=$(awk '{s+=$6}END{print s}' coverage_${MAF}_${FEATURE}.txt) #Pulls the number of bases found in a feature
         FEATUREDENSITY=$(bc -l -e "${FEATURESNP} / ${FEATUREBASE}") #Calculates the density of SNPs in a feature
-        ENRICHMENT=$(bc -l -e "${FEATURESNP} / ${FEATUREBASE}") #Calculates the enrichment of feature SNPs relative to background
-        echo -e "${MAF}\t${FEATURE}\t${ENRICHMENT}" >> snp_counts.txt
+        ENRICHMENT=$(bc -l -e "${FEATUREDENSITY} / ${BACKGROUNDDENSITY}") #Calculates the enrichment of feature SNPs relative to background
+        echo -e "${MAF}\t${FEATURE}\t${ENRICHMENT}" >> snp_counts.txt #Appends the calculated result to the results file.
     done
 done
