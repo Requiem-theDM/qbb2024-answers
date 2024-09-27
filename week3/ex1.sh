@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 ### Question 1.1 ###
+wget https://www.dropbox.com/s/ogx7nbhlhrp3ul6/BYxRM.tar.gz
+tar -xvzf BYxRM.tar.gz
 READLENGTH=$(head -n 2 A01_09.fastq | tail -n 1 | awk '{print length}') #Takes the second line of the file, then counts its length with awk
 
 # The sequencing reads are 76 bp in length.
