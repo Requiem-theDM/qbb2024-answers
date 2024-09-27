@@ -45,4 +45,4 @@ grep -w "chrIII" sacCer_A01_09.sam | wc -l #Finds any line containing chrIII as 
 
 ### Question 2.6 ###
 
-# The SNP is located at chrIV:825,833. It occurs in the intergenic region between SCC2 and SAS4.
+# The SNP is located at chrIV:825,834. It occurs in the intergenic region between SCC2 and SAS4.
