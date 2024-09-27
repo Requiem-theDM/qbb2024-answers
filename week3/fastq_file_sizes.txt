@@ -1,0 +1,10 @@
+122M	A01_09.fastq
+119M	A01_11.fastq
+129M	A01_23.fastq
+145M	A01_24.fastq
+110M	A01_27.fastq
+111M	A01_31.fastq
+146M	A01_35.fastq
+130M	A01_39.fastq
+149M	A01_62.fastq
+113M	A01_63.fastq
