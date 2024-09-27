@@ -6,7 +6,7 @@ import numpy
 import re
 
 allele_freq = [] #Initialize a list to hold allele frequencies
-depth_dist = [] #Initializes a list to hold
+depth_dist = [] #Initializes a list to hold read depth
 
 #Reads the data of the vcf file line by line
 for line in open(sys.argv[1]):
