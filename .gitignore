@@ -101,3 +101,8 @@ week3/sacCer_A01_63.bam
 week3/sacCer_A01_63.bam.bai
 week3/sacCer_A01_63.sam
 week3/biallelic.vcf
+week5/bulkRnaSeqData.tar.gz
+week5/salmon.merged.gene_counts.tsv
+week5/sample_1.fq.gz
+week5/sample_2.fq.gz
+week5/cluster_genes.txt
