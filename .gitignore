@@ -106,3 +106,6 @@ week5/salmon.merged.gene_counts.tsv
 week5/sample_1.fq.gz
 week5/sample_2.fq.gz
 week5/cluster_genes.txt
+week7/gtex_metadata_downsample.txt
+week7/gtex_whole_blood_counts_downsample.txt
+week7/gene_locations.txt
