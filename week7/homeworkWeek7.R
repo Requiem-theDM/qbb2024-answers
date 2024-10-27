@@ -130,7 +130,7 @@ dim(resCOD)[1]
 # Question 3
 volcanoPlot = ggplot(data = resSEX, aes(x = log2FoldChange, y = -log10(padj))) +
   geom_point(aes(color = (abs(log2FoldChange) > 1 & -log10(padj)>1))) +
-  geom_text(data = resSEX %>% filter(abs(log2FoldChange) > 2 & -log10(padj) > 100),
+  geom_text(data = resSEX %>% filter(abs(log2FoldChange) > 2 & -log10(padj) > 10),
             aes(x = log2FoldChange, y = -log10(padj) + 5, label = GENE_NAME), size = 2,) +
   theme_base(base_size = 10) +
   geom_line(mapping = aes(1),linetype = "dashed") +
