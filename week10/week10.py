@@ -2,11 +2,9 @@
 
 import os
 import numpy as np
-import scipy
+import pandas as pd
 import matplotlib.pyplot as plt
 import imageio
-import plotly.express as px
-import plotly
 
 
 # Load all of the images into a single numpy array
@@ -34,9 +32,8 @@ for name in filenames:
         for i, dye in enumerate(dyes):
             try:
                 imageArray[:, :, i] = imageio.v3.imread(f"{name}_{field}_{dye}.tif")
-                newimg = (imageArray[:, :, i] - np.amin(imageArray[:, :, i])) / (np.amax(imageArray[:, :, i]) - np.amin(imageArray[:, :, i]))
-                newimg = np.round(newimg * 240).astype(np.uint8)
-                imageArray[:, :, i] = newimg 
+                imageArray[:, :, i] -= np.amin(imageArray[:, :, i])
+                imageArray[:, :, i] /= np.amax(imageArray[:, :, i])
             except: continue
         allImages.append(imageArray)
 
@@ -178,10 +175,39 @@ for i in range(len(label_array[:])):
 
 # Filter out everything below more than a standard deviation from the mean
 for i in range(len(label_array[:])):
-    sizes = np.bincount(label_array[i].ravel())[1:]
-    print(sizes)
-    mean = np.average(sizes)
+    sizes = np.bincount(label_array[i].ravel())
+    print(sizes[1:])
+    mean = np.average(sizes[1:])
     print(mean)
-    sd = np.std(sizes)
+    sd = np.std(sizes[1:])
     print(sd)
     label_array[i] = filter_by_size(label_array[i],mean-sd,mean+sd)
+
+# Find Mean Nucleus Signal for PCNA and nascent RNA
+genes = []
+viewFields = []
+nuclei = []
+signalPCNA = []
+signalNRNA = []
+ratio = []
+for genefield in range(len(label_array[:])):
+    for nucleus in range(np.amax(label_array[genefield]+1)):
+        if nucleus == 0: continue
+        else:
+            where = np.where(label_array[genefield] == nucleus)
+            if genefield in [0,1]:
+                genes.append("APEX1")
+            elif genefield in [2,3]:
+                genes.append("PIM2")
+            elif genefield in [4,5]:
+                genes.append("POLR2B")
+            elif genefield in [6,7]:
+                genes.append("SRSF1")
+            if genefield in [0,2,4,6]: viewFields.append(0)
+            else: viewFields.append(1)
+            nuclei.append(nucleus)
+            signalPCNA.append(np.average(allImages[genefield][where][1]))
+            signalNRNA.append(np.average(allImages[genefield][where][2]))
+            ratio.append(np.log2(np.average(allImages[genefield][where][2])/np.average(allImages[genefield][where][1])))
+
+pd.DataFrame({'gene':genes,'viewField':viewFields,'nucleusIDX':nuclei,'nascentRNA':signalNRNA,'PCNA':signalPCNA,'Ratio':ratio}).to_csv("nuclei.csv",sep=",",mode="w",header=True,index=False)
