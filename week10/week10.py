@@ -183,6 +183,11 @@ for i in range(len(label_array[:])):
     print(sd)
     label_array[i] = filter_by_size(label_array[i],mean-sd,mean+sd)
 
+def rgb_to_int32(rgb_array):
+    """Converts an array of 3 8-bit RGB values to a single 32-bit integer."""
+    r, g, b = rgb_array
+    return (r << 16) | (g << 8) | b
+
 # Find Mean Nucleus Signal for PCNA and nascent RNA
 genes = []
 viewFields = []
@@ -206,8 +211,8 @@ for genefield in range(len(label_array[:])):
             if genefield in [0,2,4,6]: viewFields.append(0)
             else: viewFields.append(1)
             nuclei.append(nucleus)
-            signalPCNA.append(np.average(allImages[genefield][where][1]))
-            signalNRNA.append(np.average(allImages[genefield][where][2]))
-            ratio.append(np.log2(np.average(allImages[genefield][where][2])/np.average(allImages[genefield][where][1])))
+            signalPCNA.append(rgb_to_int32(allImages[genefield][where][1]))
+            signalNRNA.append(rgb_to_int32(allImages[genefield][where][2]))
+            ratio.append(np.log2(rgb_to_int32(allImages[genefield][where][2])/rgb_to_int32(allImages[genefield][where][1])))
 
 pd.DataFrame({'gene':genes,'viewField':viewFields,'nucleusIDX':nuclei,'nascentRNA':signalNRNA,'PCNA':signalPCNA,'Ratio':ratio}).to_csv("nuclei.csv",sep=",",mode="w",header=True,index=False)
