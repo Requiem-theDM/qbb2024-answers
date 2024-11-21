@@ -1,7 +1,7 @@
 # Question 3.1
-The nascent RNA signal represents how much nascent RNA is present in the nucleus of a given cell as a representation of active transcription. It is provided as the average signal in a given nuclei from a particular field of a particular knockdown condition.
+The nascent RNA signal represents how much nascent RNA is present in the nucleus of a given cell as a representation of active transcription. It is provided as the average signal in a given nuclei from a particular field of a particular knockdown condition in 32bit format.
 
-The PCNA signal represents how much PCNA is present in the nucleus of a given cell as a representation of DNA replication and repair. It is provided as the average signal in a given nuclei from a particular field of a particular knockdown condition.
+The PCNA signal represents how much PCNA is present in the nucleus of a given cell as a representation of DNA replication and repair. It is provided as the average signal in a given nuclei from a particular field of a particular knockdown condition in 32bit format.
 
 The ratio between the two provides a ratio of RNA transcription to DNA replication.
 
